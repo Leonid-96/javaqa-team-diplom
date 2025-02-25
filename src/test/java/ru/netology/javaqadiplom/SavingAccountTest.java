@@ -283,14 +283,14 @@ public class SavingAccountTest {
 
     @Test
     public void shouldSaveWhenRateEqualLimitValue101() {
-        SavingAccount account = new SavingAccount(
-                5_000,
-                3_000,
-                12_000,
-                101
-        );
-
-        Assertions.assertEquals(101, account.getRate());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    5_000,
+                    3_000,
+                    12_000,
+                    101
+            );
+        });
     }
 
     @Test
