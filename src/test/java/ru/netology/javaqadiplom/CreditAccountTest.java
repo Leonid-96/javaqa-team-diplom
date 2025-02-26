@@ -125,4 +125,15 @@ public class CreditAccountTest {
         CreditAccount account = new CreditAccount(100, 1000, 15);
         assertEquals(0, account.yearChange());
     }
+
+    @Test
+    public void shouldYearChangeWhenBalanceLessThan0() {
+        CreditAccount account = new CreditAccount(
+                100,
+                4_000,
+                24
+        );
+        account.pay(3640);
+        Assertions.assertEquals(-849, account.yearChange());
+    }
 }
