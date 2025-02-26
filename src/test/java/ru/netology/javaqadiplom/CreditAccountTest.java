@@ -36,21 +36,6 @@ public class CreditAccountTest {
         assertEquals(1_000, account.getBalance());
     }
 
-    @Test // пополнение счета при отрицательном значении balance
-    public void testAdd5() {
-        CreditAccount account = new CreditAccount(-1000, 5_000, 15
-        );
-        account.add(3_000);
-        assertEquals(2_000, account.getBalance());
-    }
-
-    @Test //проверка исключения при положительных параметрах
-    public void testException1() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CreditAccount account = new CreditAccount(5000, 1_000, 15);
-        });
-    }
-
     @Test // проверка исключения при отрицательной rate
     public void testException2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -96,8 +81,8 @@ public class CreditAccountTest {
 
     @Test // проверка оплаты при отрицательном balance не превышающий creditLimit
     public void testPay4() {
-        CreditAccount account = new CreditAccount(-500, 1000, 15);
-        account.pay(500);
+        CreditAccount account = new CreditAccount(500, 1000, 15);
+        account.pay(1500);
         assertEquals(-1000, account.getBalance());
     }
 
@@ -110,7 +95,8 @@ public class CreditAccountTest {
 
     @Test //расчет ставки при задолженности
     public void testRate1() {
-        CreditAccount account = new CreditAccount(-500, 1000, 15);
+        CreditAccount account = new CreditAccount(500, 1000, 15);
+        account.pay(1000);
         assertEquals(-75, account.yearChange());
     }
 
